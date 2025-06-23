@@ -1,0 +1,117 @@
+/* --- Importación de Fuentes de Google --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap');
+
+/* --- Variables de Color y Estilos Base --- */
+:root {
+    --bg-color: #f4f7f9;
+    --card-color: #ffffff;
+    --text-color: #333;
+    --heading-color: #2c3e50;
+    --subtle-gray: #e1e5ea;
+    --green-status: #2ecc71;
+    --red-status: #e74c3c;
+    --default-status: #95a5a6;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* --- Estructura Principal tipo Tarjeta --- */
+.dashboard {
+    background-color: var(--card-color);
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    padding: 2rem 2.5rem;
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* --- Encabezado --- */
+.dashboard-header h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--heading-color);
+    margin-bottom: 0.5rem;
+}
+
+.dashboard-header p {
+    font-size: 1.1rem;
+    color: #7f8c8d;
+}
+
+/* --- Contenedor del Video --- */
+.video-container {
+    border: 3px solid var(--subtle-gray);
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #000;
+    line-height: 0; /* Elimina espacio extra debajo de la imagen */
+}
+
+.video-container img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* --- Cuadro de Estado --- */
+.status-box {
+    background-color: var(--default-status);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+    transition: background-color 0.5s ease; /* Transición suave de color */
+}
+
+/* Indicador "En Vivo" que parpadea */
+.live-indicator {
+    width: 15px;
+    height: 15px;
+    background-color: white;
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.9); opacity: 0.7; }
+    50% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(0.9); opacity: 0.7; }
+}
+
+#status-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+/* --- Clases dinámicas para el estado --- */
+.status-box.no-violence {
+    background-color: var(--green-status);
+}
+
+.status-box.violence {
+    background-color: var(--red-status);
+}

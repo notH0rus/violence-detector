@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detección de Violencia en Vivo - Dashboard</title>
+    <!-- El CSS se carga igual -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <!-- Nueva estructura de "dashboard" -->
+    <main class="dashboard">
+        <header class="dashboard-header">
+            <h1>Sistema de Detección de Violencia</h1>
+            <p>Análisis en tiempo real.</p>
+        </header>
+
+        <section class="video-container">
+            <img src="{{ url_for('video_feed') }}" alt="Cargando stream de la cámara...">
+        </section>
+
+        <!-- El cuadro de estado ahora tiene un indicador visual -->
+        <section class="status-box" id="status-box">
+            <div class="live-indicator"></div>
+            <h2 id="status-text">Inicializando...</h2>
+        </section>
+    </main>
+
+    <!-- Script modificado para usar clases CSS -->
+    <script>
+        const statusBox = document.getElementById('status-box');
+        const statusElement = document.getElementById('status-text');
+
+        async function updateStatus() {
+            try {
+                const response = await fetch('/status');
+                if (!response.ok) {
+                    throw new Error(`Error de red: ${response.status}`);
+                }
+                const data = await response.json();
+
+                if (data && typeof data.label !== 'undefined') {
+                    // Actualiza el texto
+                    statusElement.textContent = `${data.label} (${data.confidence.toFixed(2)})`;
+
+                    // Lógica para añadir/quitar clases (más limpio que cambiar el estilo directamente)
+                    statusBox.classList.remove('violence', 'no-violence'); // Limpia clases anteriores
+                    
+                    if (data.is_violence) {
+                        statusBox.classList.add('violence');
+                    } else {
+                        statusBox.classList.add('no-violence');
+                    }
+                }
+            } catch (error) {
+                console.error("Error al actualizar el estado:", error);
+                statusElement.textContent = 'Error de conexión';
+                statusBox.classList.remove('violence', 'no-violence');
+            }
+        }
+
+        // Ejecuta la función cada segundo
+        setInterval(updateStatus, 1000);
+        
+        // Ejecútala al cargar la página
+        document.addEventListener('DOMContentLoaded', updateStatus);
+    </script>
+</body>
+</html>

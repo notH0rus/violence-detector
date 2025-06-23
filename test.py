@@ -54,8 +54,8 @@ class IPCameraStream:
         self.cap.release()
         print("Cámara liberada correctamente")
 
-# inicializar cámara IP y buffer de frames
-stream = IPCameraStream("http://192.168.18.58:8080/video")
+# inicializar camara IP y buffer de frames
+stream = IPCameraStream("http://172.25.99.112:8080/video")
 # buffer ajustado a 16 frames (consistente con entrenamiento)
 frame_buffer = deque(maxlen=16)
 frame_size = (224, 224)
