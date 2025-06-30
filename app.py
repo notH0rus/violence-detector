@@ -45,10 +45,9 @@ frame_lock = Lock()
 
 # hilo 1: lector de camara 
 def camera_reader_thread(url):
-    """
-    Este hilo es el ÚNICO que se conecta a la cámara.
-    Su trabajo es leer frames y ponerlos a disposición de los otros hilos.
-    """
+    
+    # este hilo es el unico que se conecta a la camara
+    
     global latest_raw_frame
     cap = None
     while True:
@@ -90,9 +89,9 @@ def camera_reader_thread(url):
 
 # hilo 2: deteccion de violencia
 def violence_detection_thread():
-    """
-    Este hilo consume frames de la cola, los procesa y actualiza los resultados.
-    """
+    
+    # este hilo consume frames de la cola, los procesa y actualiza los resultados
+    
     global detection_results
     if not model or not processor:
         print("El modelo no está cargado. El hilo de detección no se iniciará.")
@@ -178,7 +177,7 @@ def status():
         return jsonify(detection_results.copy())
 
 if __name__ == '__main__':
-    camera_url = "http://172.25.99.112:8080/video"
+    camera_url = "http://172.25.99.112:8080/video"  #  http://192.168.18.58:8080/video
     
     # iniciar el hilo que lee la camara
     cam_thread = Thread(target=camera_reader_thread, args=(camera_url,), daemon=True)
