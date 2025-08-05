@@ -1,4 +1,4 @@
-# TimeSformer Violence Detection
+# TimeSformer Violence Detector
 
 Este proyecto implementa un detector de violencia en video utilizando la arquitectura **TimeSformer** (Transformer para video). Fine-tuneado para identificar comportamientos violentos en secuencias temporales y ejecutado en una app web con Flask.
 
