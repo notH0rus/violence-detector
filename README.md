@@ -13,7 +13,7 @@ Al ejecutar app.py ocurre lo siguiente:
 ![Diagrama](screenshots/diagram.png)
 
 ## Capturas
-![Predicción de violencia](screenshots/sc1.png)
-![Predicción sin violencia](screenshots/sc1.png)
+![Predicción de violencia](screenshots/sc_1.png)
+![Predicción sin violencia](screenshots/sc_2.png)
 
 ## Docker (in contruction)
