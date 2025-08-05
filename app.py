@@ -177,7 +177,7 @@ def status():
         return jsonify(detection_results.copy())
 
 if __name__ == '__main__':
-    camera_url = "http://172.25.99.112:8080/video"  #  http://192.168.18.58:8080/video
+    camera_url = "http://192.168.18.58:8080/video"  #  http://172.25.99.112:8080/video  
     
     # iniciar el hilo que lee la camara
     cam_thread = Thread(target=camera_reader_thread, args=(camera_url,), daemon=True)
